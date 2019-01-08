@@ -14,11 +14,11 @@ include("config.php");
 	</head>
 	<body class="w3-light-grey">
 		<div class="w3-content" style="max-width:1400px">
-			<header class="w3-container w3-center w3-padding-32"><h1><b>BLOG</b></h1><p>Welcome to the blog of <span class="w3-tag">unknown</span></p></header>
+			<header class="w3-container w3-center w3-padding-32"><h1><b>BLOG</b></h1><p><span class="w3-tag">InVulnerable</span></p></header>
 			<div class="w3-row">
 				<div class="w3-col l4">
 					<div class="w3-card w3-margin w3-margin-top">
-						<form method="post" action="<?php echo Site_url;?>/ara">
+						<form method="post" action="<?php echo Site_url;?>/index.php?sayfa=ara">
 							<input type="text" name="ara" class='w3-input w3-block' placeholder="Sayfada Ara">
 						</form>
 					</div>

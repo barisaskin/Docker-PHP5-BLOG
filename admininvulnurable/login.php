@@ -1,8 +1,8 @@
 <?php 
-include("../config.php");
+include("config.php");
 $user= isset($_SESSION["user"])?$_SESSION["user"]:"yok";
 if($user!="yok"){
-    echo "<script>window.location.href='".Site_url."/admin/index.php';</script>";
+    echo "<script>window.location.href='".Site_url."/index.php';</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -50,7 +50,7 @@ if($user!="yok"){
                         $toplam=mysql_num_rows($sorgu);
                         if($toplam){
                             $_SESSION["user"] = $kullanici_adi;
-                            echo "<script>window.location.href='".Site_url."/admin';</script>";
+                            echo "<script>window.location.href='".Site_url."/';</script>";
                         }
                     }
                 }               

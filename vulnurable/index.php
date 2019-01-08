@@ -14,11 +14,11 @@ include("config.php");
 	</head>
 	<body class="w3-light-grey">
 		<div class="w3-content" style="max-width:1400px">
-			<header class="w3-container w3-center w3-padding-32"><h1><b>BLOG</b></h1><p>Welcome to the blog of <span class="w3-tag">unknown</span></p></header>
+			<header class="w3-container w3-center w3-padding-32"><h1><b>BLOG</b></h1><p> <span class="w3-tag">Vulnurable</span></p></header>
 			<div class="w3-row">
 				<div class="w3-col l4">
 					<div class="w3-card w3-margin w3-margin-top">
-						<form method="post" action="<?php echo Site_url_index_vulnurable;?>/ara">
+						<form method="post" action="<?php echo Site_url_index_vulnurable;?>/index.php?sayfa=ara">
 							<input type="text" name="ara" class='w3-input w3-block' placeholder="Sayfada Ara">
 						</form>
 					</div>
@@ -116,7 +116,8 @@ include("config.php");
 							} 
 							echo "</div>";
 						}else if($url[0]=="ara"){
-							$ara=htmlspecialchars($_POST["ara"]);
+							$ara=$_POST["ara"];
+							print($ara);
 							$sorgu=mysql_query("select * from yazilar where baslik like '%$ara%' order by one_cikan desc");
 							$toplam = mysql_num_rows(mysql_query("select * from yazilar"));
 							while($yaz=mysql_fetch_object($sorgu)){
@@ -128,7 +129,6 @@ include("config.php");
 								}else{
 									$icerik.="";
 								}
-								
 								echo "<div class='w3-third w3-container w3-margin-bottom'>
 										<a href='".Site_url_index_vulnurable."/index.php?sayfa=yazi/$yaz->url'><img src='".Site_url_index_vulnurable."/images/kategori/$yaz2->resim' alt='Norway' style='width:100%' class='w3-hover-opacity'></a>
 										<div class='w3-container w3-white'>

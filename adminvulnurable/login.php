@@ -31,7 +31,7 @@ if($user!="yok"){
                     <div class="w3-container">
                         <label for="uname"><b>Kullanıcı Adı</b></label>
                         <input type="text" placeholder="Kullanıcı Adı" name="kullanici_adi" required class="w3-input w3-block">
-                        <!-- Anıl Şenocak -->
+                        <!-- Anything you want -->
 
                         <label for="psw"><b>Şifre</b></label>
                         <input type="password" placeholder="Şifre" name="sifre" required class="w3-input w3-block">
@@ -53,7 +53,7 @@ if($user!="yok"){
                         $toplam=mysql_num_rows($sorgu);
                         if($toplam){
                             $_SESSION["user"] = $kullanici_adi;
-                            echo "<script>window.location.href='".Site_url."/admin';</script>";
+                            echo "<script>window.location.href='".Site_url."/';</script>";
                         }
                     }
                 }               

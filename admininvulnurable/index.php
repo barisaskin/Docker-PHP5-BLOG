@@ -2,7 +2,7 @@
 include("config.php");
 $user= isset($_SESSION["user"])?$_SESSION["user"]:"yok";
 if($user=="yok"){
-    //echo "<script>window.location.href='".Site_url."/login.php';</script>";
+    echo "<script>window.location.href='".Site_url."/login.php';</script>";
 } 
 ?>
 <!DOCTYPE html>
@@ -21,23 +21,23 @@ if($user=="yok"){
     <body class="w3-light-grey">
         <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
             <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-            <a class="w3-bar-item w3-right" href="<?php echo Site_url;?>/admin?sayfa=cikis">Çıkış Yap</a>
+            <a class="w3-bar-item w3-right" href="<?php echo Site_url;?>/index.php?sayfa=cikis">Çıkış Yap</a>
             <a class="w3-bar-item w3-left" href="<?php echo Site_url;?>">Siteye Git</a>
         </div>
         <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
             <div class="w3-container w3-row">
                 <div class="w3-col s4">
-                    <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+                    <img src="<?php echo Site_url;?>/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
                 </div>
                 <div class="w3-col s8 w3-bar"><span>Hoşgeldin, <strong><?php echo $user; ?></strong></span></div>
             </div>
             <hr>
             <div class="w3-bar-block">
-                <a href="<?php echo Site_url;?>/admin" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bell fa-fw"></i>  Yazılar</a>
-                <a href="<?php echo Site_url;?>/admin?sayfa=kategoriler" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Kategoriler</a>
-                <a href="<?php echo Site_url;?>/admin?sayfa=yorumlar" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Yorumlar</a>
-                <a href="<?php echo Site_url;?>/admin?sayfa=profil" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Profil</a>
-                <a href="<?php echo Site_url;?>/admin?sayfa=ayarlar" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Ayarlar</a><br><br>
+                <a href="<?php echo Site_url;?>/index.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bell fa-fw"></i>  Yazılar</a>
+                <a href="<?php echo Site_url;?>/index.php?sayfa=kategoriler" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Kategoriler</a>
+                <a href="<?php echo Site_url;?>/index.php?sayfa=yorumlar" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Yorumlar</a>
+                <a href="<?php echo Site_url;?>/index.php?sayfa=profil" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Profil</a>
+                <a href="<?php echo Site_url;?>/index.php?sayfa=ayarlar" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Ayarlar</a><br><br>
             </div>
         </nav>
         <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -107,7 +107,7 @@ if($user=="yok"){
                                 <td>$i</td>
                                 <td>$yaz->baslik</td>
                                 <td>$kategori->baslik</td>
-                                <td><a href='".Site_url."/admin/index.php?sayfa=yazilar_duzenle&id=$yaz->id'><i class='fa fa-edit'></i></a> <a href='".Site_url."/admin/index.php?sayfa=yazilar_sil&id=$yaz->id'><i class='fa fa-remove'></i></a></td>
+                                <td><a href='".Site_url."/index.php?sayfa=yazilar_duzenle&id=$yaz->id'><i class='fa fa-edit'></i></a> <a href='".Site_url."/index.php?sayfa=yazilar_sil&id=$yaz->id'><i class='fa fa-remove'></i></a></td>
                             </tr>";
                     }
                 ?>
@@ -118,11 +118,11 @@ if($user=="yok"){
                 $id = $_GET["id"];
                 $toplam=mysql_num_rows(mysql_query("select * from yazilar where id='$id'"));
                 if($toplam==0){
-                    echo "<script>window.location.href='".Site_url."/admin/';</script>";
+                    echo "<script>window.location.href='".Site_url."/';</script>";
                 }
                 $yaz=mysql_fetch_object(mysql_query("select * from yazilar where id='$id'"));
                 ?>
-                <form action='<?php echo Site_url;?>/admin/index.php?sayfa=yazilar_duzenle&id=<?php echo $id; ?>' method="post">
+                <form action='<?php echo Site_url;?>/index.php?sayfa=yazilar_duzenle&id=<?php echo $id; ?>' method="post">
                     <div class="w3-container">
                         <label><b>Başlık</b></label>
                         <input type="text" placeholder="Başlık" name="baslik" class="w3-input w3-block" required value="<?php echo $yaz->baslik; ?>">
@@ -162,12 +162,12 @@ if($user=="yok"){
 
                         $sorgu=mysql_query("update yazilar set baslik='$baslik', url='$url', icerik='$icerik', kategori_id='$kategori_id' where id='$id'");
                         if($sorgu){
-                            echo "<script>window.location.href='".Site_url."/admin/index.php?sayfa=yazilar_duzenle&id=$id';</script>";
+                            echo "<script>window.location.href='".Site_url."/index.php?sayfa=yazilar_duzenle&id=$id';</script>";
                         }
                     }
                 ?>
             <?php }else if($sayfa=="yazilar_ekle"){ ?>
-                <form action='<?php echo Site_url;?>/admin/index.php?sayfa=yazilar_ekle' method="post">
+                <form action='<?php echo Site_url;?>/index.php?sayfa=yazilar_ekle' method="post">
                     <div class="w3-container">
                         <label><b>Başlık</b></label>
                         <input type="text" placeholder="Başlık" name="baslik" class="w3-input w3-block" required>
@@ -198,7 +198,7 @@ if($user=="yok"){
                         $kategori_id=$_POST["kategori_id"];
                         $sorgu=mysql_query("insert into yazilar (baslik,url,icerik,kategori_id) values('$baslik','$url','$icerik','$kategori_id')");
                         if($sorgu){
-                            echo "<script>window.location.href='".Site_url."/admin/index.php?sayfa=yazilar';</script>";
+                            echo "<script>window.location.href='".Site_url."/index.php?sayfa=yazilar';</script>";
                         }else{
                             echo mysql_error();
                         }
@@ -209,11 +209,11 @@ if($user=="yok"){
                     $id = $_GET["id"];
                     $toplam=mysql_num_rows(mysql_query("select * from yazilar where id='$id'"));
                     if($toplam==0){
-                        echo "<script>window.location.href='".Site_url."/admin/';</script>";
+                        echo "<script>window.location.href='".Site_url."/';</script>";
                     }
                     $sil=mysql_query("delete from yazilar where id='$id'");
                     if($sil){
-                        echo "<script>window.location.href='".Site_url."/admin/index.php?sayfa=yazilar';</script>";
+                        echo "<script>window.location.href='".Site_url."/index.php?sayfa=yazilar';</script>";
                     }else{
                         echo mysql_error();
                     }

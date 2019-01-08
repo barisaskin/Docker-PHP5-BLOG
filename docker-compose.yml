@@ -1,41 +1,41 @@
 version: "2"
 services:
-    vulnurable:
+    vulnerable:
         build: .
         ports: 
             - "8001:80"
         volumes:
-            - ./vulnurable:/var/www/html/
+            - ./vulnerable:/var/www/html/
         links:
             - db
         networks:
             - default
-    adminvulnurable:
+    adminvulnerable:
         build: .
         ports: 
             - "8002:80"
         volumes:
-            - ./adminvulnurable:/var/www/html/
+            - ./adminvulnerable:/var/www/html/
         links:
             - db
         networks:
             - default
-    invulnurable:
+    invulnerable:
         build: .
         ports: 
             - "8003:80"
         volumes:
-            - ./invulnurable:/var/www/html/
+            - ./invulnerable:/var/www/html/
         links:
             - db
         networks:
             - default
-    admininvulnurable:
+    admininvulnerable:
         build: .
         ports: 
             - "8004:80"
         volumes:
-            - ./admininvulnurable:/var/www/html/
+            - ./admininvulnerable:/var/www/html/
         links:
             - db
         networks:
